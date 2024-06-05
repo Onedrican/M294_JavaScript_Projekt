@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: grey;
+    background-color: black;
     font-family: Verdana , sans-serif;
     overflow: hidden;
     margin-top: 60px;
@@ -36,20 +36,20 @@ body {
 }
 
 .ToDo_List {
-    height: 100%;
-    width: 40%;
+    height: 75vh;
+    width: 40vw;
     outline: 2px solid white;
     box-sizing: border-box;
     margin: 50px;
     padding: 20px;
-
+    color: white;
 }
 
 /* Designe Insert Element */
 
 .Insert_Element {
-    height: 100%;
-    width: 40%;
+    height: 75vh;
+    width: 40vw;
     outline: 2px solid white;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,13 @@ body {
     padding: 20px;
     margin: 50px;
 }
-
+.FormLabel{
+    color: white;
+    margin-top: 10px;
+}
+.Todos {
+    color: white;
+}
 /* Form Designe */
 
 input[type="date"] {
