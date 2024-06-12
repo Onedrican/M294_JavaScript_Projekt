@@ -1,21 +1,54 @@
-todoForm = document.getElementById("TodoForm")
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('TodoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-const el = document.getElementById('TodoForm');
-if (el) {
-    el.addEventListener('click', swapper, false);
-}
+        let title = document.getElementById('title').value;
+        let beschreibung = document.getElementById('Beschreibung').value;
+        let autor = document.getElementById('autor').value;
+        let kategorie = document.getElementById('kategorie').value;
+        let wichtig = document.getElementById('wichtig').checked;
+        let dringend = document.getElementById('dringend').checked;
+        let start = document.getElementById('start').value;
+        let end = document.getElementById('end').value;
 
-todoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+        let todo = {
+            title: title,
+            beschreibung: beschreibung,
+            autor: autor,
+            kategorie: kategorie,
+            wichtig: wichtig,
+            dringend: dringend,
+            start: start,
+            end: end
+        };
 
-    let title = document.getElementsByName("title");
-    let beschreibung = document.getElementsByName("beschreibung");
-    let autor = document.getElementsByName("autor");
-    let kategorie = document.getElementsByName("kategorie");
-    let wichtigkeit = document.getElementsByName("wichtigkeit");
-    let dringend = document.getElementsByName("dringend");
-    let datum = document.getElementsByName("datum");
-    let enddatum = document.getElementsByName("enddatum");
+        addToDoToList(todo);
+    });
+
+    function addToDoToList(todo) {
+        let todoList = document.querySelector('.ToDo_List');
+
+        let todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+
+        let todoTitle = document.createElement('h3');
+        todoTitle.textContent = "Titel: " + todo.title;
+
+        let todoStart = document.createElement('p');
+        todoStart.textContent = "Ende: " + todo.start;
+
+        todoItem.appendChild(todoTitle);
+        todoItem.appendChild(todoStart);
+
+        todoList.appendChild(todoItem);
+    }
+
+    let todoItems = document.querySelectorAll('.todo-item');
+    let detailsDiv = document.querySelector('.Details');
+
+    todoItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            detailsDiv.style.display = 'flex';
+        });
+    });
 });
-
-console.log(title + beschreibung + autor + kategorie + wichtigkeit + dringend + datum + enddatum);

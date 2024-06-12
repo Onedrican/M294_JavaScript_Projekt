@@ -3,7 +3,6 @@ body {
     padding: 0;
     background-color: black;
     font-family: Verdana , sans-serif;
-    overflow: hidden;
     margin-top: 60px;
 }
 
@@ -42,6 +41,33 @@ body {
     box-sizing: border-box;
     margin: 50px;
     padding: 20px;
+    color: white;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Designe Details Element */
+
+.Details {
+    height: 75vh;
+    width: 40vw;
+    outline: 2px solid white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 50px;
+}
+.FormLabel{
+    color: white;
+    margin-top: 10px;
+}
+.Todos {
     color: white;
 }
 
