@@ -1,3 +1,6 @@
+let todos = [];
+let counter = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('TodoForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let end = document.getElementById('end').value;
 
         let todo = {
+            id: counter++, // add a unique id to each todo
             title: title,
             beschreibung: beschreibung,
             autor: autor,
@@ -21,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
             start: start,
             end: end
         };
+
+        todos.push(todo);
 
         addToDoToList(todo);
     });
@@ -48,7 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     todoItems.forEach(function(item) {
         item.addEventListener('click', function() {
-            detailsDiv.style.display = 'flex';
+            detailsDiv.style.display = 'felx';
+                
+
+            let id = item.dataset.id;
+            let todo = todos.find(todo => todo.id == id);
         });
     });
 });

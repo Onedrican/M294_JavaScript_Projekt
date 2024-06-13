@@ -57,43 +57,43 @@
     <h2>ToDo List</h2> <br>
     <p>Hier werden die Aufgaben angezeigt</p>
 </div>
-</div>
+    <div class="Details">
+        <h2 class="Todos">Edit ToDo</h2>
+        <form id="ToDos">
+            <label for="title_detail" class="FormLabel">Title</label> <br>
+            <input type="text" name="title_detail" id="title_detail" placeholder="Titel" required minlength="1" maxlength="30"> <br> <br>
 
-<div class="Details">
-    <form id="ToDos">
-    <label for="title_detail" class="FormLabel">Title</label> <br>
-    <input type="text" name="title_detail" id="title_detail" placeholder="Titel" required minlength="1" maxlength="30"> <br> <br>
+            <label for="Beschreibung_detail" class="FormLabel">Beschreibung</label> <br>
+            <textarea name="beschreibung_detail" id="Beschreibung_detail" minlength="1" maxlength="255" required placeholder="Beschreibung" ></textarea> <br> <br>
 
-    <label for="Beschreibung_detail" class="FormLabel">Beschreibung</label> <br>
-    <textarea name="beschreibung_detail" id="Beschreibung_detail" minlength="1" maxlength="255" required placeholder="Beschreibung" ></textarea> <br> <br>
+            <label for="autor_detail" class="FormLabel">Author</label> <br>
+            <input type="text" name="autor_detail" id="autor_detail" placeholder="Author" minlength="1" maxlength="20"> <br> <br>
 
-    <label for="autor_detail" class="FormLabel">Author</label> <br>
-    <input type="text" name="autor_detail" id="autor_detail" placeholder="Author" minlength="1" maxlength="20"> <br> <br>
+            <label for="kategorie_detail" class="FormLabel">Kategorie</label> <br>
+            <select name="kategorie_detail" id="kategorie_detail" required>
+                <option value=""></option>
+                <option value="schule">Schule</option>
+                <option value="geschaftlich">Geschätlich</option>
+                <option value="freizeit">Freizeit</option>
+                <option value="zuhause">Zuhause</option>
+            </select> <br> <br>
 
-    <label for="kategorie_detail" class="FormLabel">Kategorie</label> <br>
-    <select name="kategorie_detail" id="kategorie_detail" required>
-        <option value=""></option>
-        <option value="schule">Schule</option>
-        <option value="geschaftlich">Geschätlich</option>
-        <option value="freizeit">Freizeit</option>
-        <option value="zuhause">Zuhause</option>
-    </select> <br> <br>
+            <label for="wichtig_detail" class="FormLabel">Wichtig?</label>
+            <input type="checkbox" name="wichtig_detail" id="wichtig_detail"> <br> <br>
 
-    <label for="wichtig_detail" class="FormLabel">Wichtig?</label>
-    <input type="checkbox" name="wichtig_detail" id="wichtig_detail"> <br> <br>
+            <label for="dringend_detail" class="FormLabel">Dringen?</label>
+            <input type="checkbox" name="dringend_detail" id="dringend_detail"> <br> <br>
 
-    <label for="dringend_detail" class="FormLabel">Dringen?</label>
-    <input type="checkbox" name="dringend_detail" id="dringend_detail"> <br> <br>
+            <label for="start_detail" class="FormLabel">Startdatum</label> <br>
+            <input type="date" name="start_detail" id="start_detail" required><br> <br>
 
-    <label for="start_detail" class="FormLabel">Startdatum</label> <br>
-    <input type="date" name="start_detail" id="start_detail" required><br> <br>
+            <label for="end_detail" class="FormLabel">Enddatum</label> <br>
+            <input type="date" name="end_detail" id="end_detail" required><br> <br>
 
-    <label for="end_detail" class="FormLabel">Enddatum</label> <br>
-    <input type="date" name="end_detail" id="end_detail" required><br> <br>
-
-    <input type="submit"  value="Delete">
-    <input type="submit"  value="Update">
-    </form>
+            <input type="submit"  value="Delete">
+            <input type="submit"  value="Update">
+        </form>
+    </div>
 </div>
 </body>
 </html>
