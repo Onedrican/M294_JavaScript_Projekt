@@ -145,6 +145,8 @@ input[type="submit"] {
 }
 
 textarea{
+    overflow: hidden;
+    resize: none;
     padding: 5px 10px;
     font-size: 25px;
     background-color: rgb(23, 22, 22);

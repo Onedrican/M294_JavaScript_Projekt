@@ -94,6 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 let todoItem = document.querySelector(`.todo-item[data-id="${id}"]`);
                 todoList.removeChild(todoItem);
             } else if (e.submitter.value == 'Update') {
+                let start_detail = document.getElementById('start_detail').value;
+                let end_detail = document.getElementById('end_detail').value;
+
+                if (!validateDatesUpdate(start_detail, end_detail)) {
+                    return;
+                }
+
                 todos[index] = {
                     id: id,
                     title: document.getElementById('title_detail').value,
@@ -102,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     kategorie: document.getElementById('kategorie_detail').value,
                     wichtig: document.getElementById('wichtig_detail').checked,
                     dringend: document.getElementById('dringend_detail').checked,
-                    start: document.getElementById('start_detail').value,
-                    end: document.getElementById('end_detail').value
+                    start: start_detail,
+                    end: end_detail
                 };
 
                 let todoItem = document.querySelector(`.todo-item[data-id="${id}"]`);
@@ -119,6 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function validateDates(start, end) {
     if (new Date(start) > new Date(end)) {
+        alert("Das Startdatum darf nicht nach dem Enddatum liegen.");
+        return false;
+    }
+    return true;
+}
+
+function validateDatesUpdate(start_detail, end_detail) {
+    if (new Date(start_detail) > new Date(end_detail)) {
         alert("Das Startdatum darf nicht nach dem Enddatum liegen.");
         return false;
     }
