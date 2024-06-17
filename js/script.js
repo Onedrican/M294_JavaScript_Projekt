@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let detailsElement = document.querySelector('.Details');
     let todoList = document.querySelector('.ToDo_List');
 
-    // Show Insert_Element and hide Details by default
     insertElement.style.display = 'flex';
     detailsElement.style.display = 'none';
 
@@ -22,8 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let start = document.getElementById('start').value;
         let end = document.getElementById('end').value;
 
+        if (!validateDates(start, end)) {
+            return;
+        }
+
         let todo = {
-            id: counter++, // add a unique id to each todo
+            id: counter++,
             title: title,
             beschreibung: beschreibung,
             autor: autor,
@@ -38,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let todoItem = document.createElement('div');
         todoItem.classList.add('todo-item');
-        todoItem.dataset.id = todo.id; // store the id in a data attribute
+        todoItem.dataset.id = todo.id;
 
         let todoTitle = document.createElement('h3');
         todoTitle.textContent = "Titel: " + todo.title;
@@ -50,13 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
         todoItem.appendChild(todoEnd);
 
         todoItem.addEventListener('click', function() {
-            // Hide Insert_Element and show Details when a todo item is clicked
             insertElement.style.display = 'none';
             detailsElement.style.display = 'flex';
 
-            // Fill the Details form with the data of the clicked todo item
-            let id = this.dataset.id;
-            let clickedTodo = todos.find(todo => todo.id == id);
+            let id = Number(this.dataset.id);
+            let clickedTodo = todos.find(todo => todo.id === id);
 
             document.getElementById('title_detail').value = clickedTodo.title;
             document.getElementById('Beschreibung_detail').value = clickedTodo.beschreibung;
@@ -66,8 +67,71 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('dringend_detail').checked = clickedTodo.dringend;
             document.getElementById('start_detail').value = clickedTodo.start;
             document.getElementById('end_detail').value = clickedTodo.end;
+
+            document.getElementById('ToDos').dataset.id = this.dataset.id;
         });
 
         todoList.appendChild(todoItem);
+
+        clearInsertFields();
+    });
+
+    document.getElementById('ToDos').addEventListener('submit', function(e) {
+        if (e.submitter.id === 'showInsert') {
+            e.preventDefault();
+            detailsElement.style.display = 'none';
+            insertElement.style.display = 'flex';
+            clearInsertFields();
+        } else {
+            e.preventDefault();
+
+            let id = Number(this.dataset.id);
+            let index = todos.findIndex(todo => todo.id === id);
+
+            if (e.submitter.value == 'Delete') {
+                todos.splice(index, 1);
+
+                let todoItem = document.querySelector(`.todo-item[data-id="${id}"]`);
+                todoList.removeChild(todoItem);
+            } else if (e.submitter.value == 'Update') {
+                todos[index] = {
+                    id: id,
+                    title: document.getElementById('title_detail').value,
+                    beschreibung: document.getElementById('Beschreibung_detail').value,
+                    autor: document.getElementById('autor_detail').value,
+                    kategorie: document.getElementById('kategorie_detail').value,
+                    wichtig: document.getElementById('wichtig_detail').checked,
+                    dringend: document.getElementById('dringend_detail').checked,
+                    start: document.getElementById('start_detail').value,
+                    end: document.getElementById('end_detail').value
+                };
+
+                let todoItem = document.querySelector(`.todo-item[data-id="${id}"]`);
+                todoItem.querySelector('h3').textContent = "Titel: " + todos[index].title;
+                todoItem.querySelector('p').textContent = "Ende: " + todos[index].end;
+            }
+
+            detailsElement.style.display = 'none';
+            insertElement.style.display = 'flex';
+        }
     });
 });
+
+function validateDates(start, end) {
+    if (new Date(start) > new Date(end)) {
+        alert("Das Startdatum darf nicht nach dem Enddatum liegen.");
+        return false;
+    }
+    return true;
+}
+
+function clearInsertFields() {
+    document.getElementById('title').value = '';
+    document.getElementById('Beschreibung').value = '';
+    document.getElementById('autor').value = '';
+    document.getElementById('kategorie').value = '';
+    document.getElementById('wichtig').checked = false;
+    document.getElementById('dringend').checked = false;
+    document.getElementById('start').value = '';
+    document.getElementById('end').value = '';
+}
