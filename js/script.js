@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let dringend = document.getElementById('dringend').checked;
         let start = document.getElementById('start').value;
         let end = document.getElementById('end').value;
-
+        
         if (!validateDates(start, end)) {
             return;
         }
