@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let dringend = document.getElementById('dringend').checked;
         let start = document.getElementById('start').value;
         let end = document.getElementById('end').value;
-        
+
         if (!validateDates(start, end)) {
             return;
         }
@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let todoEnd = document.createElement('p');
         todoEnd.textContent = "Ende: " + todo.end;
 
+        let todoCheckbox = document.createElement('input');
+        todoCheckbox.type = 'checkbox';
+        todoCheckbox.classList.add('todo-checkbox');
+
+        todoItem.appendChild(todoCheckbox);
         todoItem.appendChild(todoTitle);
         todoItem.appendChild(todoEnd);
 
