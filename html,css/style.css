@@ -47,7 +47,11 @@ body {
 
 .todo-item {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-item h3, .todo-item p {
+    margin-right: 10px;
 }
 
 /* Designe Details Element */
@@ -61,6 +65,7 @@ body {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    border-radius: 20px;
     padding: 20px;
     margin: 50px;
 }
